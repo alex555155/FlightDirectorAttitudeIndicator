@@ -14,7 +14,7 @@ void setup() {
 //portMode(1,OUTPUT);
 //portMode(2,OUTPUT);
 //portMode(3,OUTPUT);
-XYEen(1);//enable steppers
+XYEen(0);//enable steppers
 Xdir(0);//Arbitrary (for now), just needs to be asserted
   
 }

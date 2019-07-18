@@ -29,8 +29,8 @@ AccelStepper stepper(1,X_STEP,X_DIR);//initialise accelstepper for a two wire bo
 
 void setup()
 {  
-  pinMode(XYE_EN,OUTPUT); // Enable
-  digitalWrite(XYE_EN,LOW); // Set Enable low
+  portMode(3,OUTPUT); // Enable
+  portWrite(3,0); // Set Enable low
   // Change these to suit your stepper if you want
   stepper.setMaxSpeed(100);
   stepper.setAcceleration(20);

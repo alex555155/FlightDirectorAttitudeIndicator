@@ -13,7 +13,7 @@ digitalWrite(0,0);
 delay(1000);
   Serial.println("HI");
 
-portWrite(3,128);
+portWrite(3,64);
 portWrite(0,16);
 delay(1000);
 }
