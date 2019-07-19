@@ -1,8 +1,8 @@
 #define XYE_EN  PD6
 #define Z_EN    PA5
 
-#define X_STEP  PD7
-#define X_DIR   PC5
+#define X_STEP  15//PD7
+#define X_DIR   21//PC5
 
 #define Y_STEP  PC6
 #define Y_DIR   PC7
@@ -32,9 +32,9 @@ void setup()
   portMode(3,OUTPUT); // Enable
   portWrite(3,0); // Set Enable low
   // Change these to suit your stepper if you want
-  stepper.setMaxSpeed(100);
-  stepper.setAcceleration(20);
-  stepper.moveTo(500);
+  stepper.setMaxSpeed(200*4*3);
+  stepper.setAcceleration(150);
+  stepper.moveTo(200*4);
 }
 
 void loop()
