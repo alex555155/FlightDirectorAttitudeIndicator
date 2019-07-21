@@ -1,4 +1,20 @@
+#define pitch 0
+#define yaw 1
+#define roll 2
 #include <AccelStepper.h>
+
+//incoming data
+float attitude[3];
+float flyTo[3];
+float rate[3];
+float prevAttitude[3];
+
+//control array(s)
+long steps[3];//array of stepper steps. should be the end all be all of stepper command
+//all pathfinding and algorithms happen before this point
+
+
+
 
 // Define steppers
 AccelStepper X(1,15,21);
