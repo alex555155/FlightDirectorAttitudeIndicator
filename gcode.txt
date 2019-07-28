@@ -1,0 +1,87 @@
+;Dual hotend Profile by TH3DStudio.com and Racush
+
+M75 ; Start Print Timer and Engage Fil Sensor
+G28 ; home all axes
+T0; select tool 1
+G28 Z ; home z again
+G29; auto bed leveling
+
+M117 Purge nozzle 1
+T0; select tool 1
+G92 E0 ; reset extruder
+G1 Z2.5 F3000; move z up little to prevent scratching of surface
+G1 X20 Y20 Z0.6 F5000.0  ; move to start-line position
+M109 S210 T0;  heat nozzle to prime
+G1 X20 Y100.0 Z0.6 F1500.0 E15; draw 1st line
+G1 X22 Y100.0 Z0.6 F5000.0; move to side a little
+G1 X22 Y20.0 Z0.6 F1500.0 E15; draw 2nd line
+G1 E-[toolchange_retract_distance] F[toolchange_retract_speed] ;
+G92 E0; reset extruder
+
+M117 Purge nozzle 2
+T1; select tool 2
+G92 E0 ; reset extruder
+G1 Z2.5 F3000; move z up little to prevent scratching of surface
+G1 X20 Y110.0 Z0.6 F5000.0  ; move to start-line position
+M109 S210 T1; heat nozzle to prime
+G1 X20 Y180.0 Z0.6 F1500.0 E15; draw 1st line
+G1 X22 Y180.0 Z0.6 F5000.0; move to side a little
+G1 X22 Y110.0 Z0.6 F1500.0 E15; draw 2nd line
+G1 E-[toolchange_retract_distance] F[toolchange_retract_speed] ;
+G92 E0; reset extrude
+T0; select tool 1
+G1 E[toolchange_retract_distance] F[toolchange_retract_speed] ;
+G92 E0 ; reset extruder
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;******* Tool chance script start *******
+; This will cool the inactive nozzle on tool change to reduce the chance of ooze while printing
+G1 X[next_position_x] Y[next_position_y] Z[next_position_z] F[travel_speed]; Moves to purge object
+
+{IF NEWTOOL=0}T0; Force Nozzle Change
+{IF NEWTOOL=1}T1; Force Nozzle Change
+
+;{IF NEWTOOL=0}; RIGHT Extruder is active (T0)
+
+{IF NEWTOOL=0}M104 S150 T1; Cool inactive extruder (T1)
+{IF NEWTOOL=0}M109 S210 T0; Heat active extruder (T0)
+
+;{IF NEWTOOL=1}; LEFT Extruder is active (T1)
+
+{IF NEWTOOL=1}M104 S150 T0; Cool inactive extruder (T0)
+{IF NEWTOOL=1}M109 S210 T1; Heat active extruder (T1)
+
+; ******* Tool chance script end *******
